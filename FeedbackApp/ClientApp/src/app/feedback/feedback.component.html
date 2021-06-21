@@ -1,0 +1,22 @@
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Форма обратной связи</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <app-feedback-form></app-feedback-form>
+  </div>
+  <div class="col-md-6">
+    <mat-card *ngFor="let fb of service.list" class="example-card">
+      <mat-card-header>
+        <mat-card-title>Обращение от пользователя: {{fb.name}}</mat-card-title>
+        <mat-card-subtitle>Электронная почта: {{fb.email}}</mat-card-subtitle>
+        <mat-card-subtitle>Номер телефона: +7{{fb.telephone}}</mat-card-subtitle>
+        <mat-card-subtitle>Тема обращения: {{fb.theme}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{fb.message}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

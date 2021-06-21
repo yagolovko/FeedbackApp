@@ -1,0 +1,14 @@
+● src
++---● app
+|   +--● feedback
+|   |  |--feedback.component.ts|.html
+|   |  +--● feedback-form
+|   |  |  |--feedback-form.component.ts|.html
+|   |  
+|   +--● shared
+|   |  |--feedback.service.ts
+|   |  |--feedback.model.ts
+|   |
+|   |--app.module.ts
+|
+|--index.html (cdn path for bootstrap & fa icons)

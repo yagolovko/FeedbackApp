@@ -1,0 +1,65 @@
+<form novalidate autocomplete="off" #form="ngForm" (submit)="onSubmit(form)">
+  <input type="hidden" name="feedbackId" [value]="service.formData.feedbackId" />
+  <div class="form-group">
+    <label>Имя</label>
+    <input class="form-control form-control-lg" placeholder="Ваше имя..." name="name"
+           #name="ngModel" [(ngModel)]="service.formData.name"
+           required [class.is-invalid]="name.invalid && name.touched">
+    <div *ngIf="name.errors && name.touched">
+      <small class="text-danger" *ngIf="name.errors.required">Поле "Сообщение" обязательно</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Электронная почта</label>
+    <input type="email" class="form-control form-control-lg" placeholder="example@mail.org" name="email"
+           #email="ngModel" [(ngModel)]="service.formData.email"
+           required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [class.is-invalid]="email.invalid && email.touched">
+    <div *ngIf="email.errors && (email.invalid && email.touched)">
+      <small class="text-danger" *ngIf="email.errors.required">Поле "Электронная почта" обязательно</small>
+      <small class="text-danger" *ngIf="email.errors.pattern">Пожалуйста, введите корректную электронную почту</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Телефон</label>
+    <input class="form-control form-control-lg" placeholder="(000) 000-00-00" name="telephone"
+           #telephone="ngModel" [(ngModel)]="service.formData.telephone"
+           required maxlength="20" minlength="1" [class.is-invalid]="telephone.invalid && telephone.touched" mask="(000) 000-00-00" prefix="+7">
+    <div *ngIf="telephone.errors && (telephone.invalid && telephone.touched)">
+      <small class="text-danger" *ngIf="telephone.errors.required">Поле "Телефон" обязательно</small>
+      <small class="text-danger" *ngIf="telephone.errors.pattern">Пожалуйста, введите корректный номер телефона</small>
+    </div>
+  </div>
+  <div class="form-group">
+    <mat-form-field appearance="fill">
+      <mat-label>Выберите тему</mat-label>
+      <mat-select #theme="ngModel" [(ngModel)]="service.formData.theme" name="theme" required minlength="1" [class.is-invalid]="theme.invalid && theme.touched">
+        <mat-option *ngFor="let theme of service.listTheme" [value]="theme.theme">
+          {{theme.theme}}
+        </mat-option>
+      </mat-select>
+      <div *ngIf="theme.errors && theme.touched">
+        <small class="text-danger" *ngIf="theme.errors.required">Поле "Тема" обязательно</small>
+      </div>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field class="example-full-width">
+      <mat-label>Сообщение</mat-label>
+      <textarea placeholder="Ваше сообщение..." name="message"
+                #message="ngModel" [(ngModel)]="service.formData.message"
+                required maxlength="500" minlength="1" [class.is-invalid]="message.invalid && message.touched" matInput></textarea>
+      <div *ngIf="message.errors && message.touched">
+        <small class="text-danger" *ngIf="message.errors.required">Поле "Сообщение" обязательно</small>
+      </div>
+    </mat-form-field>
+  </div>
+  <re-captcha #captchaRef="reCaptcha"
+              (resolved)="resolved($event)"
+              (error)="onError($event)"
+              errorMode="handled"
+              siteKey="6LeKrUkbAAAAAEoPJTSXF_U0RQuLnfFOCVKagNj2"
+              size="invisible"></re-captcha>
+  <div class="form-group">
+    <button (click)="captchaRef.execute()" class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Отправить</button>
+  </div>
+</form>

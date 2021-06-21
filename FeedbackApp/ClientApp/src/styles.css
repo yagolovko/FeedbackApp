@@ -1,0 +1,51 @@
+.form-group label {
+    color: grey;
+  }
+
+.form-group mat-label {
+  color: grey;
+}
+
+.example-full-width {
+  width: 100%;
+}
+  
+  .form-group input {
+    font-weight: 400;
+  }
+
+.form-group mat-form-field {
+  font-weight: 400;
+}
+  
+  .form-group input::placeholder {
+    color: #c0bdbd;
+    font-weight: 400;
+  }
+
+.form-group textarea::placeholder {
+  color: #c0bdbd;
+  font-weight: 400;
+}
+.form-group textarea {
+  font-size: 15pt;
+}
+
+  thead th{
+    font-weight: 300;
+  }
+  
+  table tbody tr:hover {
+    background-color: #fffbf2;
+    cursor: pointer;
+  }
+  
+  /*for invalid form controls*/
+  input.invalid {
+    border-color: red;
+  }
+  select.invalid {
+    border-color: red;
+  }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
